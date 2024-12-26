@@ -1,21 +1,25 @@
 "use client";
 
 import React, { useState } from "react";
-import { Form, Input, Button, Upload, message } from "antd";
+import { Form, Input, Button, Upload, message, Select } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import {Select} from 'antd'
 
-export default function CandidatForm() {
+// Receive onSubmit prop from the parent component
+export default function CandidatForm({ onSubmit }) { 
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (values) => {
     setLoading(true);
 
-    // Simuler l'envoi des données
+    // Simulate API call (replace with actual API call if needed)
     setTimeout(() => {
       message.success("Votre candidature a été soumise avec succès !");
       console.log("Données soumises :", values);
+
+      // Call onSubmit prop to send data to the parent
+      onSubmit(values); 
+
       form.resetFields();
       setLoading(false);
     }, 1000);
@@ -88,7 +92,7 @@ export default function CandidatForm() {
             placeholder="Choisissez vos langages de programmation"
             options={[
               { label: "JavaScript", value: "javascript" },
-              {labem : "html", value: "HTML"},
+              { label: "HTML", value: "html" },
               { label: "Python", value: "python" },
               { label: "Java", value: "java" },
               { label: "C#", value: "csharp" },

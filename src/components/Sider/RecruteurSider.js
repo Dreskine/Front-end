@@ -25,7 +25,7 @@ export default function RecruteurSider() {
     const ItemDuMenu = [
         {label:<Link href="/">Liste candidats Info</Link>, key:1},
         {type: "divider"},
-        {label:<Link href="/recruteurs/liste">Liste candidats Informatique</Link>, key:2},
+        {label:<Link href="recruteurs/liste">Liste candidats Informatique</Link>, key:2},
     ];
     return <Menu mode="inline" items={ItemDuMenu} selectedKeys={selectedKey}></Menu>
 }

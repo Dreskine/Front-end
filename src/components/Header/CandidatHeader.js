@@ -12,7 +12,7 @@ function CandidatsHeader(){
             </div>
 
             <div className="flex items-center gap-1">
-                <Avatar size={30} src="/arimayi_logo.jpg"  />
+                <Avatar size={30} src="/Photmoi.jpg"  />
                 <div>Diarra Konte</div>
             </div>
         </Header>
