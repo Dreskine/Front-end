@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import {Select} from 'antd'
 
 export default function CandidatForm() {
   const [form] = Form.useForm();
@@ -73,6 +74,32 @@ export default function CandidatForm() {
           rules={[{ required: true, message: "Veuillez entrer le poste souhaité" }]}
         >
           <Input placeholder="Entrez le poste souhaité" />
+        </Form.Item>
+
+        <Form.Item
+          name="skills"
+          label="Langages de programmation"
+          rules={[
+            { required: true, message: "Veuillez choisir au moins 1 langage de programmation" },
+          ]}
+        >
+          <Select
+            mode="multiple"
+            placeholder="Choisissez vos langages de programmation"
+            options={[
+              { label: "JavaScript", value: "javascript" },
+              {labem : "html", value: "HTML"},
+              { label: "Python", value: "python" },
+              { label: "Java", value: "java" },
+              { label: "C#", value: "csharp" },
+              { label: "PHP", value: "php" },
+              { label: "C++", value: "cpp" },
+              { label: "Ruby", value: "ruby" },
+              { label: "Go", value: "go" },
+              { label: "TypeScript", value: "typescript" },
+              { label: "Swift", value: "swift" },
+            ]}
+          />
         </Form.Item>
 
         <Form.Item

@@ -7,7 +7,7 @@ import { CONFIG_FILES } from "next/dist/shared/lib/constants";
 import { useState } from "react";
 
 
-export default function AppSider() {
+export default function RecruteurSider() {
     const pathname = usePathname()
     const [selectedKey, setSelectedKey] = useState(["1"])
     useEffect(()=>{
