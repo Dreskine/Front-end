@@ -88,25 +88,7 @@ npm run dev
 yarn dev
 ```
 
-L'application sera disponible à l'adresse : [http://localhost:3000](http://localhost:3000)
-
-### Build de production
-
-Pour créer une version optimisée pour la production :
-
-```bash
-npm run build
-# ou
-yarn build
-```
-
-Ensuite, pour lancer l'application en production :
-
-```bash
-npm run start
-# ou
-yarn start
-```
+L'application sera disponible à l'adresse : [http://localhost:3000](http://localhost:3000
 
 
 
@@ -119,11 +101,16 @@ yarn start
 3. **Architecture modulaire**
    - Composants réutilisables et organisation claire.
   
-## Choix Techniques
+## Choix Techniques et Limitations
 
-*   **Pas de Redux:** Pour ce projet, j'ai décidé de ne pas utiliser Redux pour la gestion de l'état global. Ayant fait le projet seul et le temps impartie pour la réalisation du projet etait court, j'ai préféré me concentrer sur les fonctionnalités de base avec l'état local des composants et le context API de React. L'ajout de Redux pourrait être envisagé dans une version future pour une gestion d'état plus complexe.
-*   **Internationalisation Partielle:** La fonctionnalité de changement de langue est implémentée mais partiellement terminée. Le projet supporte actuellement le français et l'anglais, mais l'intégration de nouvelles langues et la traduction de tous les contenus n'ont pas été complètement réalisées. Cela est dû à un manque de temps et à ma première expérience avec les bibliothèques d'internationalisation comme `i18n`. Des améliorations seront apportées à ce sujet ultérieurement.
+Voici quelques points importants concernant les technologies utilisées et l'état actuel du projet :
 
+*   **Redux :** Redux est installé mais **pas utilisé** pour gérer l'état de l'application. On a préféré une solution plus simple avec l'état local des composants et le context API de React pour ce projet.
+*   **Internationalisation (i18next) :** Le changement de langue est implémenté, mais la traduction est **partielle** et le **switch de langue ne fonctionne pas correctement**. Seuls le français et l'anglais sont disponibles pour le moment, et tout le contenu n'est pas encore traduit. C'est la première fois que j'utilise i18next, donc il reste du travail à faire de ce côté.
+*   **Technologies utilisées :** Le projet utilise **Next.js 14 (App Router)**, **Ant Design** (pour les composants d'interface), et **Tailwind CSS** (pour le style).
+* **Conception et Suivi:** La conception du module a été faite avec des diagrammes UML sur **Draw.io**, et le suivi du projet a été effectué sur un **repository GitHub public** comme demandé dans les consignes initiales.
+
+**En bref :** Le projet fonctionne globalement, mais il y a encore des améliorations à apporter, notamment sur le switch de langue et les traductions manquantes. J'ai fait de mon mieux avec le temps disponible et mon niveau d'expérience actuel.
 
 
 
