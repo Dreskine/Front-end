@@ -2,6 +2,7 @@
 import { Table, Button } from 'antd'; // Importer les composants de Ant Design
 import React from 'react';
 import {Tag} from 'antd';
+import Link from "next/link";
 
 export default function Home() {
     const candidates  = [
@@ -13,6 +14,7 @@ export default function Home() {
           email: 'diarrakontepro@email.com',
           status: 'Validé',
           date: '25-12-2025',
+          details : "Voir Plus"
         },
         {
           key: '2',
@@ -22,6 +24,7 @@ export default function Home() {
           email: 'Paul.damien@email.com',
           status: 'Rejeté',
           date: '19-10-2024',
+          details : "Voir Plus"
         },
         {
           key: '3',
@@ -31,6 +34,7 @@ export default function Home() {
           email: 'Sarah.Bousfiha@email.com',
           status: 'En cours',
           date: '12-9-2024',
+          details : "Voir Plus"
         },
         {
           key: '4',
@@ -39,7 +43,8 @@ export default function Home() {
           position: 'Designer',
           email: 'leo.leclerc@yahoo.com',
           status: 'Validé',
-          date: '19-11-2020'
+          date: '19-11-2020',
+          details : "Voir Plus"
         },
         {
           key: '5',
@@ -48,7 +53,8 @@ export default function Home() {
           position: 'Développeur Backend',
           email: 'lucas.lemoine@email.com',
           status: 'Validé',
-          date: '03-01-2023'
+          date: '03-01-2023',
+          details : "Voir Plus"
         },
         {
           key: '6',
@@ -57,7 +63,8 @@ export default function Home() {
           position: 'Développeur Frontend',
           email: 'camille.durand@email.com',
           status: 'En cours',
-          date: '11-07-2022'
+          date: '11-07-2022',
+          details : "Voir Plus"
         }
       ];
     
@@ -98,7 +105,19 @@ export default function Home() {
               {text.status}
             </Tag>
           )
-        }
+        },
+
+        {
+          title: '',
+          dataIndex: 'details', 
+          key: 'details',
+          render:(_,text) =>(
+            <Link href="/recruteurs/details">
+              <Button type="primary">Voir Plus</Button>
+            </Link>
+          )
+        },
+
       ]
         return (
           <div>
