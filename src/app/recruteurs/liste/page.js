@@ -3,8 +3,10 @@ import { Table, Button } from 'antd'; // Importer les composants de Ant Design
 import React from 'react';
 import {Tag} from 'antd';
 import Link from "next/link";
+import { useTranslation } from 'next-i18next';
 
 export default function Home() {
+  const { t } = useTranslation('common');
     const candidates  = [
         {
           key: '1',
@@ -70,30 +72,30 @@ export default function Home() {
     
       const columns  = [
         {
-          title: 'Prenom',
+          title: t('firstName'),
           dataIndex: 'firstname', 
           key: 'firstname',
         },
         {
-          title: 'Nom',
+          title: t('lastName'),
           dataIndex: 'name', 
           key: 'name',
         },
     
         {
-          title: 'Poste',
+          title: t('position'),
           dataIndex: 'position', 
           key: 'position',
         },
     
         {
-          title: 'Date de Candidature',
+          title: t('applicationDate'),
           dataIndex: 'date', 
           key: 'date',
         },
     
         {
-          title: 'Statut ',
+          title: t('status'),
           dataIndex: 'status', 
           key: 'status',
           render:(_,text) =>(
@@ -112,8 +114,8 @@ export default function Home() {
           dataIndex: 'details', 
           key: 'details',
           render:(_,text) =>(
-            <Link href="/recruteurs/details">
-              <Button type="primary">Voir Plus</Button>
+            <Link href={`/recruteurs/details/${text.key}`}>
+              <Button type="primary">{t('viewMore')}</Button>
             </Link>
           )
         },
@@ -121,7 +123,7 @@ export default function Home() {
       ]
         return (
           <div>
-            <h1>Liste des Candidats - Postes Informatique</h1>
+            <h1>{t("candidateList")}</h1>
             <Table columns={columns} dataSource={candidates} />
           </div>
         );

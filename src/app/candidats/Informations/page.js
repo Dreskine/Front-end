@@ -1,9 +1,13 @@
 "use client";
 import React from "react";
+import { useTranslation } from 'next-i18next';
 import { Card, Typography, Tag, Button } from "antd";
 import { FilePdfOutlined } from '@ant-design/icons';
 
 export default function CandidatInformations() {
+  // Utilisation de i18next pour les traductions
+  const { t } = useTranslation("common");
+
   // Exemple de données candidat (statique)
   const candidatData = {
     firstname: "Diarra",
@@ -17,24 +21,24 @@ export default function CandidatInformations() {
   return (
     <div style={{ maxWidth: "900px", margin: "50px auto", padding: "20px" }}>
       <Card
-        title={<Typography.Title level={2}>Informations du Candidat</Typography.Title>}
+        title={<Typography.Title level={2}>{t('candidateInfo')}</Typography.Title>}
         bordered={false}
         style={{ boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", borderRadius: "10px" }}
       >
         <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>Prénom:</Typography.Text> {candidatData.firstname}
+          <Typography.Text strong>{t('firstName')}:</Typography.Text> {candidatData.firstname}
         </div>
         <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>Nom:</Typography.Text> {candidatData.lastname}
+          <Typography.Text strong>{t('lastName')}:</Typography.Text> {candidatData.lastname}
         </div>
         <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>Email:</Typography.Text> {candidatData.email}
+          <Typography.Text strong>{t('email')}:</Typography.Text> {candidatData.email}
         </div>
         <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>Poste souhaité:</Typography.Text> {candidatData.position}
+          <Typography.Text strong>{t('position')}:</Typography.Text> {candidatData.position}
         </div>
         <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>Langages de programmation:</Typography.Text>
+          <Typography.Text strong>{t('skills')}:</Typography.Text>
           <div>
             {candidatData.skills.map((skill, index) => (
               <Tag key={index} color="blue" style={{ marginBottom: "10px" }}>
@@ -44,7 +48,7 @@ export default function CandidatInformations() {
           </div>
         </div>
         <div style={{ marginTop: "20px" }}>
-          <Typography.Text strong>CV:</Typography.Text>
+          <Typography.Text strong>{t('cv')}:</Typography.Text>
           <Button
             type="link"
             icon={<FilePdfOutlined />}
@@ -53,7 +57,7 @@ export default function CandidatInformations() {
             rel="noopener noreferrer"
             style={{ paddingLeft: "0", fontSize: "16px" }}
           >
-            Télécharger le CV
+            {t('downloadCv')}
           </Button>
         </div>
       </Card>

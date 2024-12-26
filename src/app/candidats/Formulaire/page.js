@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Upload, message, Select } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import { useTranslation } from 'next-i18next';
 
 // Receive onSubmit prop from the parent component
 export default function CandidatForm({ onSubmit }) { 
+  const { t } = useTranslation('common');
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -14,7 +16,7 @@ export default function CandidatForm({ onSubmit }) {
 
     // Simulate API call (replace with actual API call if needed)
     setTimeout(() => {
-      message.success("Votre candidature a été soumise avec succès !");
+      message.success(t('applicationSubmitted'));
       console.log("Données soumises :", values);
 
       // Call onSubmit prop to send data to the parent
@@ -26,8 +28,8 @@ export default function CandidatForm({ onSubmit }) {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "50px auto", padding: "20px", border: "1px solid #f0f0f0", borderRadius: "8px" }}>
-      <h1>Formulaire de Candidature</h1>
+    <div style={{maxWidth: "600px", margin: "50px auto", padding: "20px", border: "1px solid #f0f0f0", borderRadius: "8px" }}>
+      <h1>{t('applicationForm')}</h1>
       <Form
         form={form}
         layout="vertical"
@@ -41,55 +43,55 @@ export default function CandidatForm({ onSubmit }) {
       >
         <Form.Item
           name="firstname"
-          label="Prénom"
+          label={t('firstName')}
           rules={[
-            { required: true, message: "Veuillez entrer votre prénom" },
-            { max: 30, message: "Le prénom ne peut pas dépasser 30 caractères" },
+            { required: true, message: t('enterFirstName') },
+            { max: 30, message: t('firstNameMaxLength') },
           ]}
         >
-          <Input placeholder="Entrez votre prénom" />
+          <Input placeholder={t('enterFirstName')} />
         </Form.Item>
 
         <Form.Item
           name="lastname"
-          label="Nom"
+          label={t('lastName')}
           rules={[
-            { required: true, message: "Veuillez entrer votre nom" },
-            { max: 30, message: "Le nom ne peut pas dépasser 30 caractères" },
+            { required: true, message: t('enterLastName') },
+            { max: 30, message: t('lastNameMaxLength') },
           ]}
         >
-          <Input placeholder="Entrez votre nom" />
+          <Input placeholder={t('enterLastName')} />
         </Form.Item>
 
         <Form.Item
           name="email"
-          label="Email"
+          label={t('email')}
           rules={[
-            { required: true, message: "Veuillez entrer votre email" },
-            { type: "email", message: "Veuillez entrer une adresse email valide" },
+            { required: true, message: t('enterEmail') },
+            { type: "email", message: t('validEmail') },
           ]}
         >
-          <Input placeholder="Entrez votre email" />
+          <Input placeholder={t('enterEmail')} />
         </Form.Item>
 
         <Form.Item
           name="position"
-          label="Poste souhaité"
-          rules={[{ required: true, message: "Veuillez entrer le poste souhaité" }]}
+          label={t('desiredPosition')}
+          rules={[{ required: true, message: t('enterPosition') }]}
         >
-          <Input placeholder="Entrez le poste souhaité" />
+          <Input placeholder={t('enterPosition')} />
         </Form.Item>
 
         <Form.Item
           name="skills"
-          label="Langages de programmation"
+          label={t('programmingLanguages')}
           rules={[
-            { required: true, message: "Veuillez choisir au moins 1 langage de programmation" },
+            { required: true, message: t('chooseAtLeastOneLanguage') },
           ]}
         >
           <Select
             mode="multiple"
-            placeholder="Choisissez vos langages de programmation"
+            placeholder={t('chooseLanguages')}
             options={[
               { label: "JavaScript", value: "javascript" },
               { label: "HTML", value: "html" },
@@ -108,19 +110,19 @@ export default function CandidatForm({ onSubmit }) {
 
         <Form.Item
           name="cv"
-          label="Télécharger votre CV"
+          label={t('uploadCv')}
           valuePropName="fileList"
           getValueFromEvent={(e) => (Array.isArray(e) ? e : e?.fileList)}
-          rules={[{ required: true, message: "Veuillez télécharger votre CV" }]}
+          rules={[{ required: true, message: t('uploadCvMessage') }]}
         >
           <Upload beforeUpload={() => false} accept=".pdf,.doc,.docx">
-            <Button icon={<UploadOutlined />}>Cliquez pour télécharger</Button>
+            <Button icon={<UploadOutlined />}>{t('clickToUpload')}</Button>
           </Upload>
         </Form.Item>
 
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={loading} block>
-            Soumettre ma candidature
+            {t('submitApplication')}
           </Button>
         </Form.Item>
       </Form>
