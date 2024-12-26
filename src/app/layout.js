@@ -1,5 +1,11 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AntdRegistry } from '@ant-design/nextjs-registry';
+import AppHeader from "@/components/AppHeader";
+import Sider from "antd/es/layout/Sider";
+import AppSider from "@/components/AppSider";
+import { Layout } from 'antd';
+import { Content } from "antd/es/layout/layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,10 +25,23 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <AntdRegistry>
+          <Layout>
+            <AppHeader/>
+
+            <Layout hasSider>
+              <Sider theme="light" style={{position:"fixed", top:"64px", left: 0, borderRight: '2px solid grey', height: "calc(100vh - 64px)"}}>
+                <AppSider/>
+              </Sider>
+              <Layout style={{marginLeft:" 200px"}}>
+                <Content style={{padding: "20px", minHeight:"calc(100vh - 64px)"}}> {children}</Content>
+              </Layout>
+            </Layout>
+            
+          </Layout>
+
+        </AntdRegistry>
       </body>
     </html>
   );
