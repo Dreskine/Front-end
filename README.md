@@ -108,15 +108,7 @@ npm run start
 yarn start
 ```
 
-### Linting
 
-Pour exécuter **ESLint** et vérifier la qualité du code :
-
-```bash
-npm run lint
-# ou
-yarn lint
-```
 
 ## Fonctionnalités principales
 
@@ -126,22 +118,13 @@ yarn lint
    - Gestion des langues via `i18nProvider`, `LanguageSwitcher` et le plugin **i18next**.
 3. **Architecture modulaire**
    - Composants réutilisables et organisation claire.
+  
+## Choix Techniques
 
-## Contribuer
+*   **Pas de Redux:** Pour ce projet, j'ai décidé de ne pas utiliser Redux pour la gestion de l'état global. Ayant fait le projet seul et le temps impartie pour la réalisation du projet etait court, j'ai préféré me concentrer sur les fonctionnalités de base avec l'état local des composants et le context API de React. L'ajout de Redux pourrait être envisagé dans une version future pour une gestion d'état plus complexe.
+*   **Internationalisation Partielle:** La fonctionnalité de changement de langue est implémentée mais partiellement terminée. Le projet supporte actuellement le français et l'anglais, mais l'intégration de nouvelles langues et la traduction de tous les contenus n'ont pas été complètement réalisées. Cela est dû à un manque de temps et à ma première expérience avec les bibliothèques d'internationalisation comme `i18n`. Des améliorations seront apportées à ce sujet ultérieurement.
 
-Les contributions sont les bienvenues ! Pour commencer :
 
-1. Forkez le projet.
-2. Créez une nouvelle branche : `git checkout -b feature/nom-de-la-fonctionnalite`
-3. Faites vos modifications et validez : `git commit -m 'Ajout de fonctionnalité XYZ'`
-4. Poussez la branche : `git push origin feature/nom-de-la-fonctionnalite`
-5. Créez une Pull Request.
 
-## Licence
 
-Ce projet est sous licence [MIT](LICENSE).
-
----
-
-Pour toute question ou suggestion, n’hésitez pas à ouvrir une issue !
 
