@@ -90,6 +90,13 @@ yarn dev
 
 L'application sera disponible à l'adresse : [http://localhost:3000](http://localhost:3000
 
+### Accees au page 
+
+Formulaire Candidats : [http://localhost:3000/](http://localhost:3000/candidats/Formulaire)
+Informations Candidats : [http://localhost:3000/](http://localhost:3000/candidats/Informations)
+
+liste candidats :[http://localhost:3000/](http://localhost:3000/recruteurs/liste)
+details candidat :[http://localhost:3000/](http://localhost:3000/recruteurs/details)
 
 
 ## Fonctionnalités principales
