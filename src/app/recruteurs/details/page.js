@@ -1,73 +1,130 @@
-import { notFound } from 'next/navigation';
+"use client";
+import { Table, Button } from 'antd'; // Importer les composants de Ant Design
 import React from 'react';
-import { useTranslation } from "next-i18next";
-import { Card, Typography, Tag, Button } from "antd";
-import { FilePdfOutlined } from '@ant-design/icons';
+import {Tag} from 'antd';
+import Link from "next/link";
+import { useTranslation } from 'next-i18next';
 
-// Function to simulate fetching candidate details (replace with actual API call)
-async function getCandidateDetails(id) {
-  // Replace this with your actual data fetching logic
-  const res = await fetch(`your-api/candidates/${id}`);
+export default function Home() {
+  const { t } = useTranslation('common');
+    const candidates  = [
+        {
+          key: '1',
+          firstname: 'Diarra',
+          name: 'Konte',
+          position: 'Développeur Frontend',
+          email: 'diarrakontepro@email.com',
+          status: 'Validé',
+          date: '25-12-2025',
+          details : "Voir Plus"
+        },
+        {
+          key: '2',
+          firstname: 'Paul',
+          name: 'Damien',
+          position: 'Chef de projet',
+          email: 'Paul.damien@email.com',
+          status: 'Rejeté',
+          date: '19-10-2024',
+          details : "Voir Plus"
+        },
+        {
+          key: '3',
+          firstname: 'Sarah',
+          name: 'Bousfiha',
+          position: 'Développeur Backend',
+          email: 'Sarah.Bousfiha@email.com',
+          status: 'En cours',
+          date: '12-9-2024',
+          details : "Voir Plus"
+        },
+        {
+          key: '4',
+          firstname: 'Léo',
+          name: 'Leclerc',
+          position: 'Designer',
+          email: 'leo.leclerc@yahoo.com',
+          status: 'Validé',
+          date: '19-11-2020',
+          details : "Voir Plus"
+        },
+        {
+          key: '5',
+          firstname: 'Lucas',
+          name: 'Lemoine',
+          position: 'Développeur Backend',
+          email: 'lucas.lemoine@email.com',
+          status: 'Validé',
+          date: '03-01-2023',
+          details : "Voir Plus"
+        },
+        {
+          key: '6',
+          firstname: 'Camille',
+          name: 'Durand',
+          position: 'Développeur Frontend',
+          email: 'camille.durand@email.com',
+          status: 'En cours',
+          date: '11-07-2022',
+          details : "Voir Plus"
+        }
+      ];
+    
+      const columns  = [
+        {
+          title: t('firstName'),
+          dataIndex: 'firstname', 
+          key: 'firstname',
+        },
+        {
+          title: t('lastName'),
+          dataIndex: 'name', 
+          key: 'name',
+        },
+    
+        {
+          title: t('position'),
+          dataIndex: 'position', 
+          key: 'position',
+        },
+    
+        {
+          title: t('applicationDate'),
+          dataIndex: 'date', 
+          key: 'date',
+        },
+    
+        {
+          title: t('status'),
+          dataIndex: 'status', 
+          key: 'status',
+          render:(_,text) =>(
+            <Tag color={
+              text.status === "Validé" ? "green" : 
+              text.status === "En cours" ? "gray" : 
+              "red"
+            }>
+              {text.status}
+            </Tag>
+          )
+        },
 
-  if (!res.ok) {
-    return notFound(); // or throw an error
-  }
+        {
+          title: '',
+          dataIndex: 'details', 
+          key: 'details',
+          render:(_,text) =>(
+            <Link href={`/recruteurs/details/`}>
+              <Button type="primary">{t('viewMore')}</Button>
+            </Link>
+          )
+        },
 
-  return res.json();
-}
-
-export default async function CandidateDetailsPage({ params }) {
-    const { t } = useTranslation("common");
-    const candidateId = params.id;
-    const candidateData = await getCandidateDetails(candidateId);
-  
-    if (!candidateData) {
-      return <div>Candidate not found.</div>;
-    }
-
-  return (
-    <div style={{ maxWidth: "900px", margin: "50px auto", padding: "20px" }}>
-      <Card
-        title={<Typography.Title level={2}>{t('candidateInfo')}</Typography.Title>}
-        bordered={false}
-        style={{ boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", borderRadius: "10px" }}
-      >
-        <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>{t('firstName')}:</Typography.Text> {candidateData.firstname}
-        </div>
-        <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>{t('lastName')}:</Typography.Text> {candidateData.lastname}
-        </div>
-        <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>{t('email')}:</Typography.Text> {candidateData.email}
-        </div>
-        <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>{t('position')}:</Typography.Text> {candidateData.position}
-        </div>
-        <div style={{ marginBottom: "20px" }}>
-          <Typography.Text strong>{t('skills')}:</Typography.Text>
+      ]
+        return (
           <div>
-            {candidateData.skills.map((skill, index) => (
-              <Tag key={index} color="blue" style={{ marginBottom: "10px" }}>
-                {skill}
-              </Tag>
-            ))}
+            <h1>{t("candidateList")}</h1>
+            <Table columns={columns} dataSource={candidates} />
           </div>
-        </div>
-        <div style={{ marginTop: "20px" }}>
-          <Typography.Text strong>{t('cv')}:</Typography.Text>
-          <Button
-            type="link"
-            icon={<FilePdfOutlined />}
-            href={candidateData.cv}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ paddingLeft: "0", fontSize: "16px" }}
-          >
-            {t('downloadCv')}
-          </Button>
-        </div>
-      </Card>
-    </div>
-  );
+        );
 }
